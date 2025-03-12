@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+@theme {
+    --color-custom-gray: #eeeeee;
+    --color-heading-blue: #6798c6;
+    --color-subheading-blue: #687395;
+    --color-custom-pink: #cc9999;
+    --color-row-gray: #999999;
+}
+
+table tr th.sticky-col.location,
+table tr td.sticky-col.location {
+  position: sticky;
+  left: 0;
+  background: inherit;
+  width: 200px;
+  color: #6798c6;
+}
+
+table tr th.sticky-col.location {
+  background-color: #eeeeee;
+  color: #687395;
+}
+
+table tr th.sticky-col.gene,
+table tr td.sticky-col.gene {
+  position: sticky;
+  left: 200px;
+  background: inherit;
+  width: 200px;
+  font-weight: bold;
+  color: #6798c6;
+}
+
+table tr th.sticky-col.gene {
+  background-color: #eeeeee;
+  color: #687395;
+}
+
+table tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+table tbody tr:nth-child(odd) {
+  background-color: white;
+}
