@@ -1,4 +1,4 @@
-export const data = [
+export const tableData = [
   {
     location: "chr17:41276045",
     gene: "BRCA1",

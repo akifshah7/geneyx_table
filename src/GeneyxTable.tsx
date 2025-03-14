@@ -1,28 +1,70 @@
-// todo: filters remaining
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   useReactTable,
   getCoreRowModel,
   flexRender,
+  getFacetedRowModel,
+  getFacetedUniqueValues,
+  ColumnFiltersState,
+  getFilteredRowModel,
 } from "@tanstack/react-table";
 import { columns } from "./config/columns";
-import { data } from "./data";
+import { tableData } from "./data";
 import "./index.css";
+import filter from "../public/filter.svg";
+import Filter from "./components/Filter";
 
 const GeneyxTable: React.FC = () => {
+  const [hoveredHeader, setHoveredHeader] = useState<string | null>(null);
+  const [clickedHeader, setClickedHeader] = useState<{
+    id: string;
+    x: number;
+    y: number;
+  } | null>(null);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [activeFilterColumn, setActiveFilterColumn] = useState<null | any>(
+    null
+  );
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
+  const [data, setData] = useState<any>([]);
+
+  useEffect(() => {
+    setData(tableData);
+  },[])
+
   const table = useReactTable({
     data,
     columns,
+    getFacetedRowModel: getFacetedRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
+    getFacetedUniqueValues: getFacetedUniqueValues(),
+    state: {
+      columnFilters
+    },
+    onColumnFiltersChange: setColumnFilters,
     getCoreRowModel: getCoreRowModel(),
     initialState: {
       columnPinning: {
         left: ["location", "gene"],
       },
     },
+    debugTable: true,
+    debugHeaders: true,
+    debugColumns: true,
   });
 
+  const handleFilterClick = (event: React.MouseEvent, headerId: string) => {
+    const rect = (event.target as HTMLElement).getBoundingClientRect();
+    setClickedHeader({
+      id: headerId,
+      x: rect.right,
+      y: rect.bottom + window.scrollY,
+    });
+    setIsOpen(true);
+  };
+
   return (
-    <div className="p-4">
+    <div className="p-4 relative">
       <div className="relative overflow-x-auto overflow-y-auto max-w-screen max-h-[80vh]">
         <table
           className="table-fixed border-separate border border-gray-200"
@@ -42,18 +84,38 @@ const GeneyxTable: React.FC = () => {
                     <th
                       key={header.id}
                       colSpan={header.colSpan}
-                      className={`border border-gray-200 max-w-fit px-4 py-2 text-center text-xs font-semibold ${stickyClass} ${
+                      onMouseEnter={() => setHoveredHeader(header.id)}
+                      onMouseLeave={() => setHoveredHeader(null)}
+                      className={`border relative border-gray-200 max-w-fit px-4 py-2 text-center text-xs font-semibold ${stickyClass} ${
                         groupIndex === 0
                           ? "text-heading-blue"
                           : "text-subheading-blue"
                       }`}
                     >
-                      {header.isPlaceholder
-                        ? null
-                        : flexRender(
+                      {header.isPlaceholder ? null : (
+                        <>
+                          {flexRender(
                             header.column.columnDef.header,
                             header.getContext()
                           )}
+                          {groupIndex > 0 && hoveredHeader === header.id && (
+                            <span
+                              className="absolute right-2 text-sm text-gray-500 cursor-pointer"
+                              onClick={(e) => {
+                                handleFilterClick(e, header.id);
+                                setActiveFilterColumn(header.column);
+                              }}
+                            >
+                              <img
+                                width={18}
+                                height={18}
+                                src={filter}
+                                alt="filter"
+                              />
+                            </span>
+                          )}
+                        </>
+                      )}
                     </th>
                   );
                 })}
@@ -87,6 +149,15 @@ const GeneyxTable: React.FC = () => {
           </tbody>
         </table>
       </div>
+
+      {/* Modal - Positioned under clicked header */}
+      {isOpen && clickedHeader && (
+        <Filter
+          position={clickedHeader}
+          onClose={() => setClickedHeader(null)}
+          column={activeFilterColumn}
+        />
+      )}
     </div>
   );
 };

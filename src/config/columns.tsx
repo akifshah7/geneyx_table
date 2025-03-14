@@ -83,6 +83,9 @@ export const columns: ColumnDef<DataType>[] = [
             </span>
           );
         },
+        meta: {
+          filterVariant: "checkbox",
+        },
       },
     ],
   },
@@ -105,6 +108,9 @@ export const columns: ColumnDef<DataType>[] = [
             </span>
           );
         },
+        meta: {
+          filterVariant: "checkbox",
+        },
       },
       {
         header: "REC",
@@ -122,13 +128,22 @@ export const columns: ColumnDef<DataType>[] = [
             </span>
           );
         },
+        meta: {
+          filterVariant: "checkbox",
+        },
       },
     ],
   },
   {
     header: "Variant Calling Q&R",
     columns: [
-      { header: "Q&R", accessorKey: "variantCallingQR.Q&R" },
+      {
+        header: "Q&R",
+        accessorKey: "variantCallingQR.Q&R",
+        meta: {
+          filterVariant: "checkbox",
+        },
+      },
       { header: "DP2", accessorKey: "variantCallingQR.DP2" },
       { header: "Alt(%)", accessorKey: "variantCallingQR.Alt(%)" },
     ],
@@ -140,12 +155,30 @@ export const columns: ColumnDef<DataType>[] = [
       {
         header: "Matched Phenotypes",
         accessorKey: "clinicalEvidence.matchedPhenotypes",
+        meta: {
+          filterVariant: "checkbox",
+        },
       },
-      { header: "CLINVAR", accessorKey: "clinicalEvidence.CLINVAR" },
-      { header: "OMIM", accessorKey: "clinicalEvidence.OMIM" },
+      {
+        header: "CLINVAR",
+        accessorKey: "clinicalEvidence.CLINVAR",
+        meta: {
+          filterVariant: "checkbox",
+        },
+      },
+      {
+        header: "OMIM",
+        accessorKey: "clinicalEvidence.OMIM",
+        meta: {
+          filterVariant: "checkbox",
+        },
+      },
       {
         header: "OMIM Inheritance",
         accessorKey: "clinicalEvidence.OMIM Inheritance",
+        meta: {
+          filterVariant: "checkbox",
+        },
       },
       { header: "LitVar2", accessorKey: "clinicalEvidence.LitVar2" },
     ],
@@ -153,16 +186,40 @@ export const columns: ColumnDef<DataType>[] = [
   {
     header: "In House",
     columns: [
-      { header: "V", accessorKey: "inHouse.V" },
-      { header: "G", accessorKey: "inHouse.G" },
+      {
+        header: "V",
+        accessorKey: "inHouse.V",
+        meta: {
+          filterVariant: "checkbox",
+        },
+      },
+      {
+        header: "G",
+        accessorKey: "inHouse.G",
+        meta: {
+          filterVariant: "checkbox",
+        },
+      },
       { header: "AF%", accessorKey: "inHouse.AF%" },
     ],
   },
   {
     header: "Effect & Prediction",
     columns: [
-      { header: "EFFECT", accessorKey: "effectAndPrediction.EFFECT" },
-      { header: "Sev", accessorKey: "effectAndPrediction.Sev" },
+      {
+        header: "EFFECT",
+        accessorKey: "effectAndPrediction.EFFECT",
+        meta: {
+          filterVariant: "checkbox",
+        },
+      },
+      {
+        header: "Sev",
+        accessorKey: "effectAndPrediction.Sev",
+        meta: {
+          filterVariant: "checkbox",
+        },
+      },
       {
         header: "CADD(PHRED)",
         accessorKey: "effectAndPrediction.CADD(PHRED)",
