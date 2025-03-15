@@ -1,5 +1,5 @@
 import { Column } from "@tanstack/react-table";
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import "../index.css";
 
 interface FilterProps {
@@ -8,24 +8,38 @@ interface FilterProps {
   onClose: () => void;
 }
 
-const Filter: React.FC<FilterProps> = ({
-  position,
-  column,
-  onClose,
-}) => {
+const Filter: React.FC<FilterProps> = ({ position, column, onClose }) => {
   const { filterVariant } = column.columnDef.meta ?? {};
 
+  // Pre-filtered unique values for checkbox variant
   const filterOptions = useMemo(() => {
-    if (filterVariant === "select") return [];
+    if (filterVariant === "text") return [];
     return Array.from(column.getFacetedUniqueValues().keys()).filter(
       (option) => option !== "" && option !== "-"
     );
   }, [column.getFacetedUniqueValues(), filterVariant]);
 
-  // Assume the filter value is an array of selected options
+  // For checkbox variant filtering we use the column's filter value as an array.
   const currentFilter = (column.getFilterValue() as string[]) || [];
 
-  // Handle checkbox change
+  // For text filtering, manage both operator and our own text input state.
+  const [operator, setOperator] = useState("contains");
+  const [textInput, setTextInput] = useState("");
+
+  // When the operator changes, update state and reapply filtering.
+  const handleOperatorChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const newOperator = e.target.value;
+    setOperator(newOperator);
+  };
+
+  // When the text input changes, update state and reapply filtering.
+  const handleTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newValue = e.target.value;
+    setTextInput(newValue);
+    column.setFilterValue({ operator, value: newValue });
+  };
+
+  // For checkbox variant, we retain your existing logic.
   const handleCheckboxChange = (
     e: React.ChangeEvent<HTMLInputElement>,
     option: string
@@ -36,7 +50,6 @@ const Filter: React.FC<FilterProps> = ({
     } else {
       newFilter = currentFilter.filter((item) => item !== option);
     }
-    // If no filters are selected, clear the filter
     column.setFilterValue(newFilter.length ? newFilter : undefined);
   };
 
@@ -74,7 +87,35 @@ const Filter: React.FC<FilterProps> = ({
       </button>
     </div>
   ) : (
-    <div></div>
+    <div
+      className="absolute bg-white border border-gray-300 shadow-md p-3 w-52 rounded-md z-50"
+      style={{ top: position.y, left: position.x }}
+    >
+      <select
+        value={operator}
+        onChange={handleOperatorChange}
+        className="border border-gray-400 text-sm rounded-md w-full px-2 py-1 mb-2 focus:outline-none"
+      >
+        <option value="contains">Contains</option>
+        <option value="notContains">Not Contains</option>
+        <option value="equals">Equals</option>
+        <option value="startsWith">Starts With</option>
+        <option value="endsWith">Ends With</option>
+      </select>
+      <input
+        type="text"
+        placeholder="Search..."
+        value={textInput}
+        onChange={handleTextChange}
+        className="border border-gray-400 text-sm rounded-md w-full px-2 py-1 mb-2 focus:outline-none"
+      />
+      <button
+        onClick={onClose}
+        className="mt-2 px-4 py-1 bg-blue-500 text-white text-xs rounded w-full"
+      >
+        Close
+      </button>
+    </div>
   );
 };
 

@@ -1,4 +1,5 @@
 import { ColumnDef } from "@tanstack/react-table";
+import { filterFunctionForText } from "../utils/filters";
 
 export interface DataType {
   location: string;
@@ -60,10 +61,12 @@ export const columns: ColumnDef<DataType>[] = [
       {
         header: "REF",
         accessorKey: "genomicAndGeneticData.REF",
+        filterFn: filterFunctionForText
       },
       {
         header: "ALT",
         accessorKey: "genomicAndGeneticData.ALT",
+        filterFn: filterFunctionForText
       },
       {
         header: "AA",
@@ -71,6 +74,7 @@ export const columns: ColumnDef<DataType>[] = [
         cell: (info) => (
           <span className="text-heading-blue">{info.getValue<string>()}</span>
         ),
+        filterFn: filterFunctionForText,
       },
       {
         header: "ZYG",

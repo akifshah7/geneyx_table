@@ -48,9 +48,6 @@ const GeneyxTable: React.FC = () => {
         left: ["location", "gene"],
       },
     },
-    debugTable: true,
-    debugHeaders: true,
-    debugColumns: true,
   });
 
   const handleFilterClick = (event: React.MouseEvent, headerId: string) => {
