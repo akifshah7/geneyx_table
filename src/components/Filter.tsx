@@ -57,6 +57,11 @@ const Filter: React.FC<FilterProps> = ({ position, column, onClose }) => {
     column.setFilterValue(newFilter.length ? newFilter : undefined);
   };
 
+  const closeModal = () => {
+    column.setFilterValue(undefined);
+    onClose();
+  };
+
   if (!position) return null;
 
   return filterVariant === "checkbox" ? (
@@ -114,7 +119,7 @@ const Filter: React.FC<FilterProps> = ({ position, column, onClose }) => {
         className="border border-gray-400 text-sm rounded-md w-full px-2 py-1 mb-2 focus:outline-none"
       />
       <button
-        onClick={onClose}
+        onClick={closeModal}
         className="mt-2 px-4 py-1 bg-blue-500 text-white text-xs rounded w-full"
       >
         Close
@@ -142,7 +147,7 @@ const Filter: React.FC<FilterProps> = ({ position, column, onClose }) => {
         className="border border-gray-400 text-sm rounded-md w-full px-2 py-1 mb-2 focus:outline-none"
       />
       <button
-        onClick={onClose}
+        onClick={closeModal}
         className="mt-2 px-4 py-1 bg-blue-500 text-white text-xs rounded w-full"
       >
         Close
