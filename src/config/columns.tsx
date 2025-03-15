@@ -1,5 +1,8 @@
 import { ColumnDef } from "@tanstack/react-table";
-import { filterFunctionForText } from "../utils/filters";
+import {
+  filterFunctionForNumbers,
+  filterFunctionForText,
+} from "../utils/filters";
 
 export interface DataType {
   location: string;
@@ -61,12 +64,18 @@ export const columns: ColumnDef<DataType>[] = [
       {
         header: "REF",
         accessorKey: "genomicAndGeneticData.REF",
-        filterFn: filterFunctionForText
+        filterFn: filterFunctionForText,
+        meta: {
+          filterVariant: "text",
+        },
       },
       {
         header: "ALT",
         accessorKey: "genomicAndGeneticData.ALT",
-        filterFn: filterFunctionForText
+        filterFn: filterFunctionForText,
+        meta: {
+          filterVariant: "text",
+        },
       },
       {
         header: "AA",
@@ -75,6 +84,9 @@ export const columns: ColumnDef<DataType>[] = [
           <span className="text-heading-blue">{info.getValue<string>()}</span>
         ),
         filterFn: filterFunctionForText,
+        meta: {
+          filterVariant: "text",
+        },
       },
       {
         header: "ZYG",
@@ -149,7 +161,11 @@ export const columns: ColumnDef<DataType>[] = [
         },
       },
       { header: "DP2", accessorKey: "variantCallingQR.DP2" },
-      { header: "Alt(%)", accessorKey: "variantCallingQR.Alt(%)" },
+      {
+        header: "Alt(%)",
+        accessorKey: "variantCallingQR.Alt(%)",
+        filterFn: filterFunctionForNumbers,
+      },
     ],
   },
   {
@@ -204,7 +220,11 @@ export const columns: ColumnDef<DataType>[] = [
           filterVariant: "checkbox",
         },
       },
-      { header: "AF%", accessorKey: "inHouse.AF%" },
+      {
+        header: "AF%",
+        accessorKey: "inHouse.AF%",
+        filterFn: filterFunctionForNumbers,
+      },
     ],
   },
   {
@@ -227,16 +247,29 @@ export const columns: ColumnDef<DataType>[] = [
       {
         header: "CADD(PHRED)",
         accessorKey: "effectAndPrediction.CADD(PHRED)",
+        filterFn: filterFunctionForNumbers,
       },
-      { header: "Splice-AI", accessorKey: "effectAndPrediction.Splice-AI" },
+      {
+        header: "Splice-AI",
+        accessorKey: "effectAndPrediction.Splice-AI",
+        filterFn: filterFunctionForNumbers,
+      },
     ],
   },
   {
     header: "Frequency",
     columns: [
-      { header: "Max AF(%)", accessorKey: "frequency.Max AF(%)" },
-      { header: "GNEv4 AF(%)", accessorKey: "frequency.GNEv4 AF(%)" },
-      { header: "GNGv4 AF(%)", accessorKey: "frequency.GNGv4 AF(%)" },
+      { header: "Max AF(%)", accessorKey: "frequency.Max AF(%)", filterFn: filterFunctionForNumbers },
+      {
+        header: "GNEv4 AF(%)",
+        accessorKey: "frequency.GNEv4 AF(%)",
+        filterFn: filterFunctionForNumbers,
+      },
+      {
+        header: "GNGv4 AF(%)",
+        accessorKey: "frequency.GNGv4 AF(%)",
+        filterFn: filterFunctionForNumbers,
+      },
     ],
   },
 ];

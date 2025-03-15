@@ -15,7 +15,7 @@ export const tableData = [
     variantCallingQR: {
       "Q&R": "Pass",
       DP2: 120,
-      "Alt(%)": "40%",
+      "Alt(%)": "40",
     },
     clinicalEvidence: {
       Pheno: "Breast cancer",
@@ -58,7 +58,7 @@ export const tableData = [
     variantCallingQR: {
       "Q&R": "Pass",
       DP2: 135,
-      "Alt(%)": "55%",
+      "Alt(%)": "55",
     },
     clinicalEvidence: {
       Pheno: "Li-Fraumeni syndrome",
@@ -101,7 +101,7 @@ export const tableData = [
     variantCallingQR: {
       "Q&R": "Fail",
       DP2: 100,
-      "Alt(%)": "35%",
+      "Alt(%)": "35",
     },
     clinicalEvidence: {
       Pheno: "Lung cancer",
@@ -144,7 +144,7 @@ export const tableData = [
     variantCallingQR: {
       "Q&R": "Pass",
       DP2: 145,
-      "Alt(%)": "50%",
+      "Alt(%)": "50",
     },
     clinicalEvidence: {
       Pheno: "Colorectal cancer",
@@ -187,7 +187,7 @@ export const tableData = [
     variantCallingQR: {
       "Q&R": "Pass",
       DP2: 110,
-      "Alt(%)": "42%",
+      "Alt(%)": "42",
     },
     clinicalEvidence: {
       Pheno: "Lynch syndrome",
@@ -230,7 +230,7 @@ export const tableData = [
     variantCallingQR: {
       "Q&R": "Pass",
       DP2: 130,
-      "Alt(%)": "38%",
+      "Alt(%)": "38",
     },
     clinicalEvidence: {
       Pheno: "Lynch syndrome",
@@ -273,7 +273,7 @@ export const tableData = [
     variantCallingQR: {
       "Q&R": "Pass",
       DP2: 140,
-      "Alt(%)": "47%",
+      "Alt(%)": "47",
     },
     clinicalEvidence: {
       Pheno: "Familial adenomatous polyposis",
@@ -316,7 +316,7 @@ export const tableData = [
     variantCallingQR: {
       "Q&R": "Fail",
       DP2: 105,
-      "Alt(%)": "33%",
+      "Alt(%)": "33",
     },
     clinicalEvidence: {
       Pheno: "Neurofibromatosis type 1",
@@ -359,7 +359,7 @@ export const tableData = [
     variantCallingQR: {
       "Q&R": "Pass",
       DP2: 125,
-      "Alt(%)": "52%",
+      "Alt(%)": "52",
     },
     clinicalEvidence: {
       Pheno: "Cowden syndrome",
