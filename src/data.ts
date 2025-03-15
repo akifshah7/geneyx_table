@@ -28,7 +28,7 @@ export const tableData = [
     inHouse: {
       V: "Confirmed",
       G: "Positive",
-      "AF%": "0.5%",
+      "AF%": "0.5",
     },
     effectAndPrediction: {
       EFFECT: "Missense",
@@ -37,9 +37,9 @@ export const tableData = [
       "Splice-AI": "Neutral",
     },
     frequency: {
-      "Max AF(%)": "0.2%",
-      "GNEv4 AF(%)": "0.15%",
-      "GNGv4 AF(%)": "0.18%",
+      "Max AF(%)": "0.2",
+      "GNEv4 AF(%)": "0.15",
+      "GNGv4 AF(%)": "0.18",
     },
   },
   {
@@ -71,7 +71,7 @@ export const tableData = [
     inHouse: {
       V: "Validated",
       G: "Positive",
-      "AF%": "0.8%",
+      "AF%": "0.8",
     },
     effectAndPrediction: {
       EFFECT: "Missense",
@@ -80,9 +80,9 @@ export const tableData = [
       "Splice-AI": "Minor",
     },
     frequency: {
-      "Max AF(%)": "0.3%",
-      "GNEv4 AF(%)": "0.25%",
-      "GNGv4 AF(%)": "0.28%",
+      "Max AF(%)": "0.3",
+      "GNEv4 AF(%)": "0.25",
+      "GNGv4 AF(%)": "0.28",
     },
   },
   {
@@ -114,7 +114,7 @@ export const tableData = [
     inHouse: {
       V: "Not Validated",
       G: "Negative",
-      "AF%": "0.3%",
+      "AF%": "0.3",
     },
     effectAndPrediction: {
       EFFECT: "Missense",
@@ -123,9 +123,9 @@ export const tableData = [
       "Splice-AI": "No effect",
     },
     frequency: {
-      "Max AF(%)": "0.4%",
-      "GNEv4 AF(%)": "0.35%",
-      "GNGv4 AF(%)": "0.38%",
+      "Max AF(%)": "0.4",
+      "GNEv4 AF(%)": "0.35",
+      "GNGv4 AF(%)": "0.38",
     },
   },
   {
@@ -157,7 +157,7 @@ export const tableData = [
     inHouse: {
       V: "Validated",
       G: "Positive",
-      "AF%": "0.6%",
+      "AF%": "0.6",
     },
     effectAndPrediction: {
       EFFECT: "Missense",
@@ -166,9 +166,9 @@ export const tableData = [
       "Splice-AI": "No impact",
     },
     frequency: {
-      "Max AF(%)": "0.5%",
-      "GNEv4 AF(%)": "0.45%",
-      "GNGv4 AF(%)": "0.47%",
+      "Max AF(%)": "0.5",
+      "GNEv4 AF(%)": "0.45",
+      "GNGv4 AF(%)": "0.47",
     },
   },
   {
@@ -200,7 +200,7 @@ export const tableData = [
     inHouse: {
       V: "Validated",
       G: "Positive",
-      "AF%": "0.7%",
+      "AF%": "0.7",
     },
     effectAndPrediction: {
       EFFECT: "Nonsense",
@@ -209,9 +209,9 @@ export const tableData = [
       "Splice-AI": "Predicted loss",
     },
     frequency: {
-      "Max AF(%)": "0.2%",
-      "GNEv4 AF(%)": "0.18%",
-      "GNGv4 AF(%)": "0.20%",
+      "Max AF(%)": "0.2",
+      "GNEv4 AF(%)": "0.18",
+      "GNGv4 AF(%)": "0.20",
     },
   },
   {
@@ -243,7 +243,7 @@ export const tableData = [
     inHouse: {
       V: "Validated",
       G: "Confirmed",
-      "AF%": "0.4%",
+      "AF%": "0.4",
     },
     effectAndPrediction: {
       EFFECT: "Frameshift",
@@ -252,9 +252,9 @@ export const tableData = [
       "Splice-AI": "Altered splicing",
     },
     frequency: {
-      "Max AF(%)": "0.3%",
-      "GNEv4 AF(%)": "0.25%",
-      "GNGv4 AF(%)": "0.27%",
+      "Max AF(%)": "0.3",
+      "GNEv4 AF(%)": "0.25",
+      "GNGv4 AF(%)": "0.27",
     },
   },
   {
@@ -286,7 +286,7 @@ export const tableData = [
     inHouse: {
       V: "Validated",
       G: "Confirmed",
-      "AF%": "0.5%",
+      "AF%": "0.5",
     },
     effectAndPrediction: {
       EFFECT: "Frameshift",
@@ -295,9 +295,9 @@ export const tableData = [
       "Splice-AI": "Significant",
     },
     frequency: {
-      "Max AF(%)": "0.3%",
-      "GNEv4 AF(%)": "0.28%",
-      "GNGv4 AF(%)": "0.30%",
+      "Max AF(%)": "0.3",
+      "GNEv4 AF(%)": "0.28",
+      "GNGv4 AF(%)": "0.30",
     },
   },
   {
@@ -329,7 +329,7 @@ export const tableData = [
     inHouse: {
       V: "Not Validated",
       G: "Negative",
-      "AF%": "0.6%",
+      "AF%": "0.6",
     },
     effectAndPrediction: {
       EFFECT: "Splice site",
@@ -338,9 +338,9 @@ export const tableData = [
       "Splice-AI": "Predicted impact",
     },
     frequency: {
-      "Max AF(%)": "0.4%",
-      "GNEv4 AF(%)": "0.35%",
-      "GNGv4 AF(%)": "0.38%",
+      "Max AF(%)": "0.4",
+      "GNEv4 AF(%)": "0.35",
+      "GNGv4 AF(%)": "0.38",
     },
   },
   {
@@ -372,7 +372,7 @@ export const tableData = [
     inHouse: {
       V: "Validated",
       G: "Positive",
-      "AF%": "0.7%",
+      "AF%": "0.7",
     },
     effectAndPrediction: {
       EFFECT: "Missense",
@@ -381,9 +381,9 @@ export const tableData = [
       "Splice-AI": "No impact",
     },
     frequency: {
-      "Max AF(%)": "0.2%",
-      "GNEv4 AF(%)": "0.18%",
-      "GNGv4 AF(%)": "0.20%",
+      "Max AF(%)": "0.2",
+      "GNEv4 AF(%)": "0.18",
+      "GNGv4 AF(%)": "0.20",
     },
   },
 ];
