@@ -53,10 +53,18 @@ export const columns: ColumnDef<DataType>[] = [
   {
     header: "Location",
     accessorKey: "location",
+    filterFn: filterFunctionForText,
+    meta: {
+      filterVariant: "text",
+    },
   },
   {
     header: "Gene",
     accessorKey: "gene",
+    filterFn: filterFunctionForText,
+    meta: {
+      filterVariant: "text",
+    },
   },
   {
     header: "Genomic & Genetic Data",
