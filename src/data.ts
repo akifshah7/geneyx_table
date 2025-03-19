@@ -7,6 +7,7 @@ export const tableData = [
       ALT: "T",
       AA: "Arg",
       ZYG: "HET",
+      codon: ""
     },
     ACMG: {
       DOM: "",
@@ -50,6 +51,7 @@ export const tableData = [
       ALT: "A",
       AA: "Arg",
       ZYG: "HOM",
+      codon: "Gga/Aga"
     },
     ACMG: {
       DOM: "LP",
@@ -93,6 +95,7 @@ export const tableData = [
       ALT: "G",
       AA: "Gly",
       ZYG: "HET",
+      codon: "Gga/Aga"
     },
     ACMG: {
       DOM: "VUS",
@@ -136,6 +139,7 @@ export const tableData = [
       ALT: "T",
       AA: "Gly",
       ZYG: "HET",
+      codon: ""
     },
     ACMG: {
       DOM: "LP",
@@ -179,6 +183,7 @@ export const tableData = [
       ALT: "C",
       AA: "Ser",
       ZYG: "HOM",
+      codon: ""
     },
     ACMG: {
       DOM: "VUS",
@@ -222,6 +227,7 @@ export const tableData = [
       ALT: "G",
       AA: "Arg",
       ZYG: "HET",
+      codon: ""
     },
     ACMG: {
       DOM: "VUS",
@@ -265,6 +271,7 @@ export const tableData = [
       ALT: "T",
       AA: "Trp",
       ZYG: "HET",
+      codon: "ctC/ctT"
     },
     ACMG: {
       DOM: "VUS",
@@ -308,6 +315,7 @@ export const tableData = [
       ALT: "C",
       AA: "Leu",
       ZYG: "HET",
+      codon: "ctC/ctT"
     },
     ACMG: {
       DOM: "LP",
@@ -351,6 +359,7 @@ export const tableData = [
       ALT: "A",
       AA: "His",
       ZYG: "HET",
+      codon: ""
     },
     ACMG: {
       DOM: "VUS",

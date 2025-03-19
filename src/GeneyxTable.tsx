@@ -12,7 +12,10 @@ import { columns } from "./config/columns";
 import { tableData } from "./data";
 import "./index.css";
 import filter from "../public/filter.svg";
+import right from "../public/chevron-right.svg";
+import left from "../public/chevron-left.svg";
 import Filter from "./components/Filter";
+import { getDefaultColumnVisibility } from "./utils/columnVisibility";
 
 const GeneyxTable: React.FC = () => {
   const [hoveredHeader, setHoveredHeader] = useState<string | null>(null);
@@ -28,9 +31,16 @@ const GeneyxTable: React.FC = () => {
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [data, setData] = useState<any>([]);
 
+  const [columnVisibility, setColumnVisibility] = useState(
+    getDefaultColumnVisibility(columns)
+  );
+  const [expandedHeaders, setExpandedHeaders] = useState<
+    Record<string, boolean>
+  >({});
+
   useEffect(() => {
     setData(tableData);
-  },[])
+  }, []);
 
   const table = useReactTable({
     data,
@@ -39,8 +49,10 @@ const GeneyxTable: React.FC = () => {
     getFilteredRowModel: getFilteredRowModel(),
     getFacetedUniqueValues: getFacetedUniqueValues(),
     state: {
-      columnFilters
+      columnFilters,
+      columnVisibility,
     },
+    onColumnVisibilityChange: setColumnVisibility,
     onColumnFiltersChange: setColumnFilters,
     getCoreRowModel: getCoreRowModel(),
     initialState: {
@@ -95,6 +107,53 @@ const GeneyxTable: React.FC = () => {
                             header.column.columnDef.header,
                             header.getContext()
                           )}
+                          {groupIndex === 0 && (
+                            <span
+                              className="absolute right-2 text-sm text-gray-500 cursor-pointer"
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                const currentExpanded =
+                                  expandedHeaders[header.column.id] || false;
+                                setExpandedHeaders((prev) => ({
+                                  ...prev,
+                                  [header.column.id]: !currentExpanded,
+                                }));
+
+                                // Get all leaf columns for this top-level header
+                                const leafColumns =
+                                  header.column.getLeafColumns();
+                                setColumnVisibility((prev) => {
+                                  const newVisibility = { ...prev };
+                                  leafColumns.forEach((leaf) => {
+                                    if (!currentExpanded) {
+                                      // Expanding: force all subheaders to visible
+                                      newVisibility[leaf.id] = true;
+                                    } else {
+                                      newVisibility[leaf.id] =
+                                        leaf.columnDef.meta
+                                          ?.defaultVisibility === false
+                                          ? false
+                                          : true;
+                                    }
+                                  });
+                                  return newVisibility;
+                                });
+                              }}
+                            >
+                              <img
+                                width={18}
+                                height={18}
+                                src={
+                                  expandedHeaders[header.column.id]
+                                    ? left
+                                    : right
+                                }
+                                alt="toggle columns"
+                              />
+                            </span>
+                          )}
+
+                          {/* For subheaders, show filter icon on hover as before */}
                           {groupIndex > 0 && hoveredHeader === header.id && (
                             <span
                               className="absolute right-2 text-sm text-gray-500 cursor-pointer"

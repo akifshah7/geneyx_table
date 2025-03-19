@@ -49,9 +49,10 @@ export interface DataType {
 }
 
 // todo: need to add more styles to columns
-export const columns: ColumnDef<DataType>[] = [
+export const columns: ColumnDef<DataType,any>[] = [
   {
     header: "Location",
+    id: "location",
     accessorKey: "location",
     filterFn: filterFunctionForText,
     meta: {
@@ -109,6 +110,15 @@ export const columns: ColumnDef<DataType>[] = [
         },
         meta: {
           filterVariant: "checkbox",
+        },
+      },
+      {
+        header: "Codon",
+        id: "codon",
+        accessorKey: "genomicAndGeneticData.codon",
+        meta: {
+          filterVariant: "text",
+          defaultVisibility: false
         },
       },
     ],
