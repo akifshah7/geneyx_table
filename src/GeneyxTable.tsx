@@ -107,51 +107,52 @@ const GeneyxTable: React.FC = () => {
                             header.column.columnDef.header,
                             header.getContext()
                           )}
-                          {groupIndex === 0 && (
-                            <span
-                              className="absolute right-2 text-sm text-gray-500 cursor-pointer"
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                const currentExpanded =
-                                  expandedHeaders[header.column.id] || false;
-                                setExpandedHeaders((prev) => ({
-                                  ...prev,
-                                  [header.column.id]: !currentExpanded,
-                                }));
+                          {groupIndex === 0 &&
+                            header.column.getLeafColumns().length > 3 && (
+                              <span
+                                className="absolute right-2 text-sm text-gray-500 cursor-pointer"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  const currentExpanded =
+                                    expandedHeaders[header.column.id] || false;
+                                  setExpandedHeaders((prev) => ({
+                                    ...prev,
+                                    [header.column.id]: !currentExpanded,
+                                  }));
 
-                                // Get all leaf columns for this top-level header
-                                const leafColumns =
-                                  header.column.getLeafColumns();
-                                setColumnVisibility((prev) => {
-                                  const newVisibility = { ...prev };
-                                  leafColumns.forEach((leaf) => {
-                                    if (!currentExpanded) {
-                                      // Expanding: force all subheaders to visible
-                                      newVisibility[leaf.id] = true;
-                                    } else {
-                                      newVisibility[leaf.id] =
-                                        leaf.columnDef.meta
-                                          ?.defaultVisibility === false
-                                          ? false
-                                          : true;
-                                    }
+                                  // Get all leaf columns for this top-level header
+                                  const leafColumns =
+                                    header.column.getLeafColumns();
+                                  setColumnVisibility((prev) => {
+                                    const newVisibility = { ...prev };
+                                    leafColumns.forEach((leaf) => {
+                                      if (!currentExpanded) {
+                                        // Expanding: force all subheaders to visible
+                                        newVisibility[leaf.id] = true;
+                                      } else {
+                                        newVisibility[leaf.id] =
+                                          leaf.columnDef.meta
+                                            ?.defaultVisibility === false
+                                            ? false
+                                            : true;
+                                      }
+                                    });
+                                    return newVisibility;
                                   });
-                                  return newVisibility;
-                                });
-                              }}
-                            >
-                              <img
-                                width={18}
-                                height={18}
-                                src={
-                                  expandedHeaders[header.column.id]
-                                    ? left
-                                    : right
-                                }
-                                alt="toggle columns"
-                              />
-                            </span>
-                          )}
+                                }}
+                              >
+                                <img
+                                  width={18}
+                                  height={18}
+                                  src={
+                                    expandedHeaders[header.column.id]
+                                      ? left
+                                      : right
+                                  }
+                                  alt="toggle columns"
+                                />
+                              </span>
+                            )}
 
                           {/* For subheaders, show filter icon on hover as before */}
                           {groupIndex > 0 && hoveredHeader === header.id && (

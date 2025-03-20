@@ -73,6 +73,7 @@ export const columns: ColumnDef<DataType,any>[] = [
       {
         header: "REF",
         accessorKey: "genomicAndGeneticData.REF",
+        id: 'ref',
         filterFn: filterFunctionForText,
         meta: {
           filterVariant: "text",
@@ -81,6 +82,7 @@ export const columns: ColumnDef<DataType,any>[] = [
       {
         header: "ALT",
         accessorKey: "genomicAndGeneticData.ALT",
+        id: "alt",
         filterFn: filterFunctionForText,
         meta: {
           filterVariant: "text",
@@ -89,6 +91,7 @@ export const columns: ColumnDef<DataType,any>[] = [
       {
         header: "AA",
         accessorKey: "genomicAndGeneticData.AA",
+        id: "aa",
         cell: (info) => (
           <span className="text-heading-blue">{info.getValue<string>()}</span>
         ),
@@ -99,6 +102,7 @@ export const columns: ColumnDef<DataType,any>[] = [
       },
       {
         header: "ZYG",
+        id: "zyg",
         accessorKey: "genomicAndGeneticData.ZYG",
         cell: (info) => {
           const value = info.getValue<string>();
@@ -116,6 +120,20 @@ export const columns: ColumnDef<DataType,any>[] = [
         header: "Codon",
         id: "codon",
         accessorKey: "genomicAndGeneticData.codon",
+        filterFn: filterFunctionForText,
+        meta: {
+          filterVariant: "text",
+          defaultVisibility: false
+        },
+      },
+      {
+        header: "SNS/RSID",
+        id: "sns",
+        accessorKey: "genomicAndGeneticData.sns/rsid",
+        cell: (info) => (
+          <div className="text-xs truncate ...">{info.getValue()}</div>
+        ),
+        filterFn: filterFunctionForText,
         meta: {
           filterVariant: "text",
           defaultVisibility: false
@@ -127,39 +145,17 @@ export const columns: ColumnDef<DataType,any>[] = [
     header: "ACMG",
     columns: [
       {
-        header: "DOM",
-        accessorKey: "ACMG.DOM",
+        header: "ACMG CLASSIFICATION",
+        id: "acmgClassification",
+        accessorKey: "ACMG.acmgClassification",
         cell: (info) => {
           const value = info.getValue<string>();
           if (!value) return null;
           return (
-            <span
-              className={`${
-                value === "LP" ? "bg-custom-pink" : "bg-row-gray"
-              } w-8 h-8 px-2 rounded-sm text-white`}
+            <div
             >
               {value}
-            </span>
-          );
-        },
-        meta: {
-          filterVariant: "checkbox",
-        },
-      },
-      {
-        header: "REC",
-        accessorKey: "ACMG.REC",
-        cell: (info) => {
-          const value = info.getValue<string>();
-          if (!value) return null;
-          return (
-            <span
-              className={`${
-                value === "LP" ? "bg-custom-pink" : "bg-row-gray"
-              } w-8 h-8 px-2 rounded-sm text-white`}
-            >
-              {value}
-            </span>
+            </div>
           );
         },
         meta: {
@@ -172,26 +168,54 @@ export const columns: ColumnDef<DataType,any>[] = [
     header: "Variant Calling Q&R",
     columns: [
       {
-        header: "Q&R",
-        accessorKey: "variantCallingQR.Q&R",
+        header: "IMPACT",
+        accessorKey: "variantCallingQR.impact",
         meta: {
           filterVariant: "checkbox",
         },
       },
-      { header: "DP2", accessorKey: "variantCallingQR.DP2" },
+      { header: "DP", accessorKey: "variantCallingQR.DP" },
       {
-        header: "Alt(%)",
-        accessorKey: "variantCallingQR.Alt(%)",
+        header: "GQ",
+        accessorKey: "variantCallingQR.GQ",
         filterFn: filterFunctionForNumbers,
+      },
+      {
+        header: "PL",
+        id: "pl",
+        accessorKey: "variantCallingQR.PL",
+        filterFn: filterFunctionForNumbers,
+        meta: {
+          defaultVisibility: false,
+        },
+      },
+      {
+        header: "QUAL",
+        id: "qual",
+        accessorKey: "variantCallingQR.QUAL",
+        filterFn: filterFunctionForNumbers,
+        meta: {
+          defaultVisibility: false,
+        },
+      },
+      {
+        header: "FILTER",
+        id: "filter",
+        accessorKey: "variantCallingQR.FILTER",
+        filterFn: filterFunctionForNumbers,
+        meta: {
+          defaultVisibility: false,
+        },
       },
     ],
   },
   {
     header: "Clinical Evidence",
     columns: [
-      { header: "Pheno", accessorKey: "clinicalEvidence.Pheno" },
+      { header: "Pheno", accessorKey: "clinicalEvidence.Pheno", id: "pheno" },
       {
         header: "Matched Phenotypes",
+        id: "matchedPhenotypes",
         accessorKey: "clinicalEvidence.matchedPhenotypes",
         meta: {
           filterVariant: "checkbox",
@@ -199,6 +223,7 @@ export const columns: ColumnDef<DataType,any>[] = [
       },
       {
         header: "CLINVAR",
+        id: "clinvar",
         accessorKey: "clinicalEvidence.CLINVAR",
         meta: {
           filterVariant: "checkbox",
@@ -206,6 +231,7 @@ export const columns: ColumnDef<DataType,any>[] = [
       },
       {
         header: "OMIM",
+        id: "omim",
         accessorKey: "clinicalEvidence.OMIM",
         meta: {
           filterVariant: "checkbox",
@@ -213,12 +239,13 @@ export const columns: ColumnDef<DataType,any>[] = [
       },
       {
         header: "OMIM Inheritance",
+        id: "omimInheritance",
         accessorKey: "clinicalEvidence.OMIM Inheritance",
         meta: {
           filterVariant: "checkbox",
         },
       },
-      { header: "LitVar2", accessorKey: "clinicalEvidence.LitVar2" },
+      { header: "LitVar2", accessorKey: "clinicalEvidence.LitVar2", id: "litvar2" },
     ],
   },
   {
@@ -226,6 +253,7 @@ export const columns: ColumnDef<DataType,any>[] = [
     columns: [
       {
         header: "V",
+        id: "v",
         accessorKey: "inHouse.V",
         meta: {
           filterVariant: "checkbox",
@@ -233,6 +261,7 @@ export const columns: ColumnDef<DataType,any>[] = [
       },
       {
         header: "G",
+        id: "g",
         accessorKey: "inHouse.G",
         meta: {
           filterVariant: "checkbox",
@@ -240,6 +269,7 @@ export const columns: ColumnDef<DataType,any>[] = [
       },
       {
         header: "AF%",
+        id: "af%",
         accessorKey: "inHouse.AF%",
         filterFn: filterFunctionForNumbers,
       },
@@ -250,6 +280,7 @@ export const columns: ColumnDef<DataType,any>[] = [
     columns: [
       {
         header: "EFFECT",
+        id: "effect",
         accessorKey: "effectAndPrediction.EFFECT",
         meta: {
           filterVariant: "checkbox",
@@ -257,6 +288,7 @@ export const columns: ColumnDef<DataType,any>[] = [
       },
       {
         header: "Sev",
+        id: "sev",
         accessorKey: "effectAndPrediction.Sev",
         meta: {
           filterVariant: "checkbox",
@@ -264,11 +296,13 @@ export const columns: ColumnDef<DataType,any>[] = [
       },
       {
         header: "CADD(PHRED)",
+        id: "caddPhred",
         accessorKey: "effectAndPrediction.CADD(PHRED)",
         filterFn: filterFunctionForNumbers,
       },
       {
         header: "Splice-AI",
+        id: "spiceAi",
         accessorKey: "effectAndPrediction.Splice-AI",
         filterFn: filterFunctionForNumbers,
       },
