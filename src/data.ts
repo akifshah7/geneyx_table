@@ -2,16 +2,16 @@ export const tableData = [
   {
     location: "chr17:41276045",
     gene: "BRCA1",
-    genomicAndGeneticData: {
+    genomicsAndGeneticInformation: {
       REF: "C",
       ALT: "T",
       AA: "Arg",
-      ZYG: "HET",
+      ZYGOSITY: "HET",
       codon: "",
     },
     ACMG: {
       DOM: "",
-      REC: "VUS",
+      ACMGCLASSIFICATION: "VUS",
     },
     variantCallingQR: {
       "Q&R": "Pass",
@@ -46,16 +46,16 @@ export const tableData = [
   {
     location: "chr17:7579472",
     gene: "TP53",
-    genomicAndGeneticData: {
+    genomicsAndGeneticInformation: {
       REF: "G",
       ALT: "A",
       AA: "Arg",
-      ZYG: "HOM",
+      ZYGOSITY: "HOM",
       codon: "Gga/Aga",
     },
     ACMG: {
       DOM: "LP",
-      REC: "LP",
+      ACMGCLASSIFICATION: "LP",
     },
     variantCallingQR: {
       "Q&R": "Pass",
@@ -90,16 +90,16 @@ export const tableData = [
   {
     location: "chr7:55249071",
     gene: "EGFR",
-    genomicAndGeneticData: {
+    genomicsAndGeneticInformation: {
       REF: "A",
       ALT: "G",
       AA: "Gly",
-      ZYG: "HET",
+      ZYGOSITY: "HET",
       codon: "Gga/Aga",
     },
     ACMG: {
       DOM: "VUS",
-      REC: "VUS",
+      ACMGCLASSIFICATION: "VUS",
     },
     variantCallingQR: {
       "Q&R": "Fail",
@@ -134,16 +134,16 @@ export const tableData = [
   {
     location: "chr12:25398284",
     gene: "KRAS",
-    genomicAndGeneticData: {
+    genomicsAndGeneticInformation: {
       REF: "G",
       ALT: "T",
       AA: "Gly",
-      ZYG: "HET",
+      ZYGOSITY: "HET",
       codon: "",
     },
     ACMG: {
       DOM: "LP",
-      REC: "LP",
+      ACMGCLASSIFICATION: "LP",
     },
     variantCallingQR: {
       "Q&R": "Pass",
@@ -178,16 +178,16 @@ export const tableData = [
   {
     location: "chr3:37034807",
     gene: "MLH1",
-    genomicAndGeneticData: {
+    genomicsAndGeneticInformation: {
       REF: "T",
       ALT: "C",
       AA: "Ser",
-      ZYG: "HOM",
+      ZYGOSITY: "HOM",
       codon: "",
     },
     ACMG: {
       DOM: "VUS",
-      REC: "VUS",
+      ACMGCLASSIFICATION: "VUS",
     },
     variantCallingQR: {
       "Q&R": "Pass",
@@ -222,16 +222,16 @@ export const tableData = [
   {
     location: "chr2:47630513",
     gene: "MSH2",
-    genomicAndGeneticData: {
+    genomicsAndGeneticInformation: {
       REF: "A",
       ALT: "G",
       AA: "Arg",
-      ZYG: "HET",
+      ZYGOSITY: "HET",
       codon: "",
     },
     ACMG: {
       DOM: "VUS",
-      REC: "VUS",
+      ACMGCLASSIFICATION: "VUS",
     },
     variantCallingQR: {
       "Q&R": "Pass",
@@ -266,16 +266,16 @@ export const tableData = [
   {
     location: "chr5:112175434",
     gene: "APC",
-    genomicAndGeneticData: {
+    genomicsAndGeneticInformation: {
       REF: "G",
       ALT: "T",
       AA: "Trp",
-      ZYG: "HET",
+      ZYGOSITY: "HET",
       codon: "ctC/ctT",
     },
     ACMG: {
       DOM: "VUS",
-      REC: "VUS",
+      ACMGCLASSIFICATION: "VUS",
     },
     variantCallingQR: {
       "Q&R": "Pass",
@@ -310,16 +310,16 @@ export const tableData = [
   {
     location: "chr17:29500000",
     gene: "NF1",
-    genomicAndGeneticData: {
+    genomicsAndGeneticInformation: {
       REF: "T",
       ALT: "C",
       AA: "Leu",
-      ZYG: "HET",
+      ZYGOSITY: "HET",
       codon: "ctC/ctT",
     },
     ACMG: {
       DOM: "LP",
-      REC: "LP",
+      ACMGCLASSIFICATION: "LP",
     },
     variantCallingQR: {
       "Q&R": "Fail",
@@ -354,16 +354,16 @@ export const tableData = [
   {
     location: "chr10:89692913",
     gene: "PTEN",
-    genomicAndGeneticData: {
+    genomicsAndGeneticInformation: {
       REF: "C",
       ALT: "A",
       AA: "His",
-      ZYG: "HET",
+      ZYGOSITY: "HET",
       codon: "",
     },
     ACMG: {
       DOM: "VUS",
-      REC: "VUS",
+      ACMGCLASSIFICATION: "VUS",
     },
     variantCallingQR: {
       "Q&R": "Pass",
