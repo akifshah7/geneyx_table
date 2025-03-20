@@ -8,9 +8,9 @@ export interface DataType {
   location: string;
   gene: string;
   genomicsAndGeneticInformation: {
+    GENE: string;
     REF: string;
     ALT: string;
-    AA: string;
     ZYGOSITY: string;
     CODONS: string;
     SPNS: string;

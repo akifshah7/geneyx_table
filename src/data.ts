@@ -8,7 +8,7 @@ export const tableData = [
       ALT: "T",
       AA: "Arg",
       ZYGOSITY: "HET",
-      codon: "",
+      CODONS: "asd",
     },
     ACMG: {
       DOM: "",
