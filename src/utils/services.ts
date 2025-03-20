@@ -46,6 +46,33 @@ export const getTableData = async (url: string, callBack: any) => {
               MOI: row.MOI,
               PUBMED: row.PUBMED,
             },
+            effectAndPrediction: {
+              CADDPHRED: row["CADD PHRED"],
+              CADDRAW: row["CADD RAW"],
+              ALPHAMISSENSERANKSCORE: row["ALPHAMISSENSE RANKSCORE"],
+              ALPHAMISSENSESCORE: row["ALPHAMISSENSE SCORE"],
+              IMPACT: row["LRT PRED"], //column missing in final file
+              EFFECT: row["LRT PRED"], //column missing in final file
+              LRTPRED: row["LRT PRED"],
+              LRTSCORE: row["LRT SCORE"],
+              MUTATIONTASTERPRED: row["MUTATIONTASTER PRED"],
+              MUTATIONTASTERSCORE: row["MUTATIONTASTER SCORE"],
+              ADASCORE: row["ADA SCORE"],
+              RFSCORE: row["RF SCORE"],
+              SIFT4GSCORE: row["SIFT4G SCORE"],
+              SIFT: row["SIFT4G PRED"],
+              REVELSCORE: row["REVEL SCORE"],
+              GERPNR: row["GERP++ NR"],
+              GERPRS: row["GERP++ RS"],
+              GERPRSRANKSCORE: row["GERP++ RS RANKSCORE"],
+            },
+            frequency: {
+              AF: row.AF,
+              GNOMADEXOMESSASAF: row["GNOMAD EXOMES SAS AF"],
+              "1000GP3SASAF": row["1000GP3 SAS AF"],
+              ESP6500EAAF: row["ESP6500 EA AF"],
+              EXACSASAF: row["EXAC SAS AF"],
+            },
           };
         });
 

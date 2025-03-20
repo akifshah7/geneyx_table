@@ -2,6 +2,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import {
   filterFunctionForNumbers,
   filterFunctionForText,
+  filterFunctionForTextCheckbox,
 } from "../utils/filters";
 
 export interface DataType {
@@ -120,9 +121,9 @@ export const columns: ColumnDef<DataType, any>[] = [
         header: "REF",
         id: "genomics-ref",
         accessorKey: "genomicsAndGeneticInformation.REF",
-        filterFn: filterFunctionForText,
+        filterFn: filterFunctionForTextCheckbox,
         meta: {
-          filterVariant: "text",
+          filterVariant: "checkbox",
           defaultVisibility: true,
         },
       },
@@ -130,9 +131,9 @@ export const columns: ColumnDef<DataType, any>[] = [
         header: "ALT",
         id: "genomics-alt",
         accessorKey: "genomicsAndGeneticInformation.ALT",
-        filterFn: filterFunctionForText,
+        filterFn: filterFunctionForTextCheckbox,
         meta: {
-          filterVariant: "text",
+          filterVariant: "checkbox",
           defaultVisibility: true,
         },
       },
@@ -148,6 +149,8 @@ export const columns: ColumnDef<DataType, any>[] = [
             </span>
           );
         },
+        // Add this filter function
+        filterFn: filterFunctionForTextCheckbox,
         meta: {
           filterVariant: "checkbox",
           defaultVisibility: true,
@@ -157,6 +160,7 @@ export const columns: ColumnDef<DataType, any>[] = [
         header: "CODONS",
         id: "genomics-codons",
         accessorKey: "genomicsAndGeneticInformation.CODONS",
+        filterFn: filterFunctionForText,
         meta: {
           filterVariant: "text",
           defaultVisibility: false,
@@ -166,6 +170,7 @@ export const columns: ColumnDef<DataType, any>[] = [
         header: "SNPS/RSID",
         id: "genomics-snps",
         accessorKey: "genomicsAndGeneticInformation.SPNS",
+        filterFn: filterFunctionForText,
         meta: {
           filterVariant: "text",
           defaultVisibility: false,
@@ -175,6 +180,7 @@ export const columns: ColumnDef<DataType, any>[] = [
         header: "HGVSC VEP",
         id: "genomics-hgvsc",
         accessorKey: "genomicsAndGeneticInformation.HGVSC",
+        filterFn: filterFunctionForText,
         meta: {
           filterVariant: "text",
           defaultVisibility: false,
@@ -184,6 +190,7 @@ export const columns: ColumnDef<DataType, any>[] = [
         header: "HGVSP VEP",
         id: "genomics-hgvsp",
         accessorKey: "genomicsAndGeneticInformation.HGVSP",
+        filterFn: filterFunctionForText,
         meta: {
           filterVariant: "text",
           defaultVisibility: false,
@@ -193,6 +200,7 @@ export const columns: ColumnDef<DataType, any>[] = [
         header: "LOVD (refseq)",
         id: "genomics-lovd",
         accessorKey: "genomicsAndGeneticInformation.LOVD",
+        filterFn: filterFunctionForText,
         meta: {
           filterVariant: "text",
           defaultVisibility: false,
@@ -202,6 +210,7 @@ export const columns: ColumnDef<DataType, any>[] = [
         header: "AMINO ACIDS",
         id: "genomics-aminoacids",
         accessorKey: "genomicsAndGeneticInformation.AMINOACIDS",
+        filterFn: filterFunctionForText,
         meta: {
           filterVariant: "text",
           defaultVisibility: false,
@@ -270,6 +279,7 @@ export const columns: ColumnDef<DataType, any>[] = [
             </span>
           );
         },
+        filterFn: filterFunctionForTextCheckbox,
         meta: {
           filterVariant: "checkbox",
         },
@@ -285,6 +295,7 @@ export const columns: ColumnDef<DataType, any>[] = [
         header: "IMPACT",
         id: "variant-impact",
         accessorKey: "variantCallingQR.IMPACT",
+        filterFn: filterFunctionForTextCheckbox,
         meta: {
           filterVariant: "checkbox",
           defaultVisibility: true,
@@ -294,8 +305,9 @@ export const columns: ColumnDef<DataType, any>[] = [
         header: "DP",
         id: "variant-dp",
         accessorKey: "variantCallingQR.DP",
+        filterFn: filterFunctionForNumbers,
         meta: {
-          filterVariant: "checkbox",
+          filterVariant: "number",
           defaultVisibility: true,
         },
       },
@@ -304,7 +316,6 @@ export const columns: ColumnDef<DataType, any>[] = [
         id: "variant-gq",
         accessorKey: "variantCallingQR.GQ",
         meta: {
-          filterVariant: "checkbox",
           defaultVisibility: true,
         },
         filterFn: filterFunctionForNumbers,
@@ -314,7 +325,6 @@ export const columns: ColumnDef<DataType, any>[] = [
         id: "variant-pl",
         accessorKey: "variantCallingQR.PL",
         meta: {
-          filterVariant: "checkbox",
           defaultVisibility: false,
         },
         filterFn: filterFunctionForNumbers,
@@ -324,7 +334,6 @@ export const columns: ColumnDef<DataType, any>[] = [
         id: "variant-qual",
         accessorKey: "variantCallingQR.QUAL",
         meta: {
-          filterVariant: "checkbox",
           defaultVisibility: false,
         },
         filterFn: filterFunctionForNumbers,
@@ -334,7 +343,6 @@ export const columns: ColumnDef<DataType, any>[] = [
         id: "variant-filter",
         accessorKey: "variantCallingQR.FILTER",
         meta: {
-          filterVariant: "checkbox",
           defaultVisibility: false,
         },
         filterFn: filterFunctionForNumbers,
@@ -350,8 +358,9 @@ export const columns: ColumnDef<DataType, any>[] = [
         header: "PHENOTYPES",
         accessorKey: "clinicalEvidence.PHENOTYPES",
         id: "clinical-phenotypes",
+        filterFn: filterFunctionForText,
         meta: {
-          filterVariant: "checkbox",
+          filterVariant: "text",
           defaultVisibility: true,
         },
       },
@@ -359,8 +368,9 @@ export const columns: ColumnDef<DataType, any>[] = [
         header: "CLINVAR CLNSIG",
         accessorKey: "clinicalEvidence.CLINVARCLNSIG",
         id: "clinical-clinvarclnsig",
+        filterFn: filterFunctionForText,
         meta: {
-          filterVariant: "checkbox",
+          filterVariant: "text",
           defaultVisibility: true,
         },
       },
@@ -368,8 +378,9 @@ export const columns: ColumnDef<DataType, any>[] = [
         header: "CLINVAR REVIEW",
         accessorKey: "clinicalEvidence.CLINVARREVIEW",
         id: "clinical-clinvarreview",
+        filterFn: filterFunctionForText,
         meta: {
-          filterVariant: "checkbox",
+          filterVariant: "text",
           defaultVisibility: true,
         },
       },
@@ -377,8 +388,9 @@ export const columns: ColumnDef<DataType, any>[] = [
         header: "ACMG DISEASE ID (OMIM/ORPHA ID)",
         accessorKey: "clinicalEvidence.ACMGDISEASEID",
         id: "clinical-acmgdiseaseid",
+        filterFn: filterFunctionForText,
         meta: {
-          filterVariant: "checkbox",
+          filterVariant: "text",
           defaultVisibility: false,
         },
       },
@@ -386,8 +398,9 @@ export const columns: ColumnDef<DataType, any>[] = [
         header: "MOI",
         accessorKey: "clinicalEvidence.MOI",
         id: "clinical-moi",
+        filterFn: filterFunctionForText,
         meta: {
-          filterVariant: "checkbox",
+          filterVariant: "text",
           defaultVisibility: false,
         },
       },
@@ -395,8 +408,9 @@ export const columns: ColumnDef<DataType, any>[] = [
         header: "PUBMED",
         accessorKey: "clinicalEvidence.PUBMED",
         id: "clinical-pubmed",
+        filterFn: filterFunctionForText,
         meta: {
-          filterVariant: "checkbox",
+          filterVariant: "text",
           defaultVisibility: false,
         },
       },
@@ -409,14 +423,14 @@ export const columns: ColumnDef<DataType, any>[] = [
   //       header: "V",
   //       accessorKey: "inHouse.V",
   //       meta: {
-  //         filterVariant: "checkbox",
+
   //       },
   //     },
   //     {
   //       header: "G",
   //       accessorKey: "inHouse.G",
   //       meta: {
-  //         filterVariant: "checkbox",
+
   //       },
   //     },
   //     {
@@ -435,8 +449,9 @@ export const columns: ColumnDef<DataType, any>[] = [
         header: "CADD PHRED",
         accessorKey: "effectAndPrediction.CADDPHRED",
         id: "effect-caddphred",
+        filterFn: filterFunctionForNumbers,
         meta: {
-          filterVariant: "checkbox",
+          filterVariant: "number",
           defaultVisibility: true,
         },
       },
@@ -444,8 +459,9 @@ export const columns: ColumnDef<DataType, any>[] = [
         header: "CADD RAW",
         accessorKey: "effectAndPrediction.CADDRAW",
         id: "effect-caddraw",
+        filterFn: filterFunctionForNumbers,
         meta: {
-          filterVariant: "checkbox",
+          filterVariant: "number",
           defaultVisibility: true,
         },
       },
@@ -453,138 +469,147 @@ export const columns: ColumnDef<DataType, any>[] = [
         header: "ALPHAMISSENSE RANKSCORE",
         accessorKey: "effectAndPrediction.ALPHAMISSENSERANKSCORE",
         id: "effect-alphamissenserankscore",
+        filterFn: filterFunctionForNumbers,
         meta: {
-          filterVariant: "checkbox",
+          filterVariant: "number",
           defaultVisibility: true,
         },
-        filterFn: filterFunctionForNumbers,
+      },
+      {
+        header: "ALPHAMISSENSE SCORE",
+        accessorKey: "effectAndPrediction.ALPHAMISSENSESCORE",
+        id: "effect-alphamissensescore",
+        filterFn: filterFunctionForText,
+        meta: {
+          filterVariant: "text",
+          defaultVisibility: true,
+        },
       },
       {
         header: "IMPACT",
         accessorKey: "effectAndPrediction.IMPACT",
         id: "effect-impact",
+        filterFn: filterFunctionForTextCheckbox,
         meta: {
           filterVariant: "checkbox",
           defaultVisibility: false,
         },
-        filterFn: filterFunctionForNumbers,
       },
       {
         header: "EFFECT",
         accessorKey: "effectAndPrediction.EFFECT",
         id: "effect-effect",
+        filterFn: filterFunctionForText,
         meta: {
-          filterVariant: "checkbox",
+          filterVariant: "text",
           defaultVisibility: false,
         },
-        filterFn: filterFunctionForNumbers,
       },
       {
         header: "LRT PRED",
         accessorKey: "effectAndPrediction.LRTPRED",
         id: "effect-lrtpred",
+        filterFn: filterFunctionForTextCheckbox,
         meta: {
           filterVariant: "checkbox",
           defaultVisibility: false,
         },
-        filterFn: filterFunctionForNumbers,
       },
       {
         header: "LRT SCORE",
         accessorKey: "effectAndPrediction.LRTSCORE",
         id: "effect-lrtscore",
+        filterFn: filterFunctionForNumbers,
         meta: {
-          filterVariant: "checkbox",
+          filterVariant: "number",
           defaultVisibility: false,
         },
-        filterFn: filterFunctionForNumbers,
       },
       {
         header: "MUTATIONTASTER PRED",
         accessorKey: "effectAndPrediction.MUTATIONTASTERPRED",
         id: "effect-mutationtasterpred",
+        filterFn: filterFunctionForText,
         meta: {
-          filterVariant: "checkbox",
+          filterVariant: "text",
           defaultVisibility: false,
         },
-        filterFn: filterFunctionForNumbers,
       },
       {
         header: "MUTATIONTASTER SCORE",
         accessorKey: "effectAndPrediction.MUTATIONTASTERSCORE",
         id: "effect-mutationtasterscore",
+        filterFn: filterFunctionForText,
         meta: {
-          filterVariant: "checkbox",
+          filterVariant: "text",
           defaultVisibility: false,
         },
-        filterFn: filterFunctionForNumbers,
       },
       {
         header: "ADA SCORE",
         accessorKey: "effectAndPrediction.ADASCORE",
         id: "effect-adascore",
+        filterFn: filterFunctionForNumbers,
         meta: {
-          filterVariant: "checkbox",
+          filterVariant: "number",
           defaultVisibility: false,
         },
-        filterFn: filterFunctionForNumbers,
       },
       {
         header: "RF SCORE",
         accessorKey: "effectAndPrediction.RFSCORE",
         id: "effect-rfscore",
+        filterFn: filterFunctionForNumbers,
         meta: {
-          filterVariant: "checkbox",
+          filterVariant: "number",
           defaultVisibility: false,
         },
-        filterFn: filterFunctionForNumbers,
       },
       {
         header: "SIFT4G SCORE",
         accessorKey: "effectAndPrediction.SIFT4GSCORE",
         id: "effect-sift4gscore",
+        filterFn: filterFunctionForText,
         meta: {
-          filterVariant: "checkbox",
+          filterVariant: "text",
           defaultVisibility: false,
         },
-        filterFn: filterFunctionForNumbers,
       },
       {
         header: "SIFT",
         accessorKey: "effectAndPrediction.SIFT",
         id: "effect-sift",
+        filterFn: filterFunctionForText,
         meta: {
-          filterVariant: "checkbox",
+          filterVariant: "text",
           defaultVisibility: false,
         },
-        filterFn: filterFunctionForNumbers,
       },
       {
         header: "REVEL SCORE",
         accessorKey: "effectAndPrediction.REVELSCORE",
         id: "effect-revelscore",
+        filterFn: filterFunctionForText,
         meta: {
-          filterVariant: "checkbox",
+          filterVariant: "text",
           defaultVisibility: false,
         },
-        filterFn: filterFunctionForNumbers,
       },
       {
         header: "GERP++ NR",
         accessorKey: "effectAndPrediction.GERPNR",
         id: "effect-gerpnr",
+        filterFn: filterFunctionForNumbers,
         meta: {
-          filterVariant: "checkbox",
+          filterVariant: "number",
           defaultVisibility: false,
         },
-        filterFn: filterFunctionForNumbers,
       },
       {
         header: "GERP++ RS",
         accessorKey: "effectAndPrediction.GERPRS",
         id: "effect-gerprs",
         meta: {
-          filterVariant: "checkbox",
           defaultVisibility: false,
         },
         filterFn: filterFunctionForNumbers,
@@ -593,11 +618,11 @@ export const columns: ColumnDef<DataType, any>[] = [
         header: "GERP++ RS RANKSCORE",
         accessorKey: "effectAndPrediction.GERPRSRANKSCORE",
         id: "effect-gerprsrankscore",
+        filterFn: filterFunctionForNumbers,
         meta: {
-          filterVariant: "checkbox",
+          filterVariant: "number",
           defaultVisibility: false,
         },
-        filterFn: filterFunctionForNumbers,
       },
     ],
   },
@@ -608,51 +633,51 @@ export const columns: ColumnDef<DataType, any>[] = [
         header: "AF",
         accessorKey: "frequency.AF",
         id: "frequency-af",
+        filterFn: filterFunctionForNumbers,
         meta: {
-          filterVariant: "checkbox",
+          filterVariant: "number",
           defaultVisibility: true,
         },
-        filterFn: filterFunctionForNumbers,
       },
       {
         header: "GNOMAD EXOMES SAS AF",
         accessorKey: "frequency.GNOMADEXOMESSASAF",
         id: "frequency-gnomadexomessasaf",
+        filterFn: filterFunctionForNumbers,
         meta: {
-          filterVariant: "checkbox",
+          filterVariant: "number",
           defaultVisibility: true,
         },
-        filterFn: filterFunctionForNumbers,
       },
       {
         header: "1000GP3 SAS AF",
         accessorKey: "frequency.1000GP3SASAF",
         id: "frequency-1000gp3sasaf",
+        filterFn: filterFunctionForNumbers,
         meta: {
-          filterVariant: "checkbox",
+          filterVariant: "number",
           defaultVisibility: true,
         },
-        filterFn: filterFunctionForNumbers,
       },
       {
         header: "ESP6500 EA AF",
         accessorKey: "frequency.ESP6500EAAF",
         id: "frequency-esp6500eaaf",
+        filterFn: filterFunctionForNumbers,
         meta: {
-          filterVariant: "checkbox",
+          filterVariant: "number",
           defaultVisibility: false,
         },
-        filterFn: filterFunctionForNumbers,
       },
       {
         header: "EXAC SAS AF",
         accessorKey: "frequency.EXACSASAF",
         id: "frequency-exacsasaf",
+        filterFn: filterFunctionForNumbers,
         meta: {
-          filterVariant: "checkbox",
+          filterVariant: "number",
           defaultVisibility: false,
         },
-        filterFn: filterFunctionForNumbers,
       },
     ],
   },

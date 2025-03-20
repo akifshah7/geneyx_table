@@ -18,7 +18,6 @@ import autoTable from "jspdf-autotable";
 import right from "../public/chevron-right.svg";
 import left from "../public/chevron-left.svg";
 import { getDefaultColumnVisibility } from "./utils/columnVisibility";
-import Papa from "papaparse";
 import { getTableData } from "./utils/services";
 
 const GeneyxTable: React.FC = () => {
@@ -400,7 +399,26 @@ const GeneyxTable: React.FC = () => {
                   return (
                     <td
                       key={cell.id}
-                      className={`border border-gray-200 max-w-fit px-4 py-2 text-center text-xs ${stickyClass} truncate`}
+                      className={`border border-gray-200 max-w-fit px-4 py-2 text-center text-xs ${stickyClass} ${
+                        cell.id.includes("genomics-spliceregion") ||
+                        cell.id.includes("genomics-lovd") ||
+                        cell.id.includes("genomics-snps") ||
+                        cell.id.includes("genomics-hgvsc") ||
+                        cell.id.includes("genomics-hgvsp") ||
+                        cell.id.includes("clinical-phenotypes") ||
+                        cell.id.includes("clinical-clinvarreview") ||
+                        cell.id.includes("clinical-pubmed") ||
+                        cell.id.includes("effect-mutationtasterscore") ||
+                        cell.id.includes("effect-adascore") ||
+                        cell.id.includes("effect-alphamissensescore") ||
+                        cell.id.includes("effect-sift4gscore") ||
+                        cell.id.includes("effect-revelscore") ||
+                        cell.id.includes("frequency-exacsasaf") ||
+                        cell.id.includes("frequency-esp6500eaaf") ||
+                        cell.id.includes("frequency-1000gp3sasaf")
+                          ? "truncate"
+                          : ""
+                      }`}
                     >
                       {flexRender(
                         cell.column.columnDef.cell,
