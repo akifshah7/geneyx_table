@@ -3,6 +3,7 @@ export const tableData = [
     location: "chr17:41276045",
     gene: "BRCA1",
     genomicsAndGeneticInformation: {
+      GENE: "GENEEE",
       REF: "C",
       ALT: "T",
       AA: "Arg",
