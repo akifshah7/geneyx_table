@@ -7,51 +7,83 @@ import {
 export interface DataType {
   location: string;
   gene: string;
-  genomicAndGeneticData: {
+  genomicsAndGeneticInformation: {
     REF: string;
     ALT: string;
     AA: string;
-    ZYG: string;
+    ZYGOSITY: string;
+    CODONS: string;
+    SPNS: string;
+    HGVSC: string;
+    HGVSP: string;
+    LOVD: string;
+    AMINOACIDS: string;
+    MANE: string;
+    MANEPLUS: string;
+    SPLICEREGION: string;
   };
   ACMG: {
-    DOM: string;
-    REC: string;
+    ACMGCLASSIFICATION: string;
   };
   variantCallingQR: {
-    "Q&R": string;
-    DP2: number;
-    "Alt(%)": string;
+    IMPACT: string;
+    DP: number;
+    GQ: number;
+    PL: number;
+    QUAL: number;
+    FILTER: string;
   };
+
+  // clinical evidence
   clinicalEvidence: {
-    Pheno: string;
-    matchedPhenotypes: string;
-    CLINVAR: string;
-    OMIM: string;
-    "OMIM Inheritance": string;
-    LitVar2: string;
+    PHENOTYPES: string;
+    CLINVARCLNSIG: string;
+    CLINVARREVIEW: string;
+    ACMGDISEASEID: string;
+    MOI: string;
+    PUBMED: string;
   };
-  inHouse: {
-    V: string;
-    G: string;
-    "AF%": string;
-  };
+  // inHouse: {
+  //   V: string;
+  //   G: string;
+  //   "AF%": string;
+  // };
+
+  // effect and prediction
   effectAndPrediction: {
+    CADDPHRED: string;
+    CADDRAW: string;
+    ALPHAMISSENSERANKSCORE: number;
+    IMPACT: string;
     EFFECT: string;
-    Sev: string;
-    "CADD(PHRED)": number;
-    "Splice-AI": string;
+    LRTPRED: string;
+    LRTSCORE: string;
+    MUTATIONTASTERPRED: string;
+    MUTATIONTASTERSCORE: string;
+    ADASCORE: string;
+    RFSCORE: string;
+    SIFT4GSCORE: number;
+    SIFT: string;
+    REVELSCORE: string;
+    GERPNR: number;
+    GERPRS: number;
+    GERPRSRANKSCORE: number;
   };
+
+  // frequency
   frequency: {
-    "Max AF(%)": string;
-    "GNEv4 AF(%)": string;
-    "GNGv4 AF(%)": string;
+    AF: string;
+    GNOMADEXOMESSASAF: string;
+    "1000GP3SASAF": string;
+    ESP6500EAAF: string;
+    EXACSASAF: string;
   };
 }
 
 // todo: need to add more styles to columns
-export const columns: ColumnDef<DataType,any>[] = [
+export const columns: ColumnDef<DataType, any>[] = [
   {
-    header: "Location",
+    header: "LOCATION",
     id: "location",
     accessorKey: "location",
     filterFn: filterFunctionForText,
@@ -60,19 +92,29 @@ export const columns: ColumnDef<DataType,any>[] = [
     },
   },
   {
-    header: "Gene",
+    header: "SYMBOL (GENE NAME)",
     accessorKey: "gene",
     filterFn: filterFunctionForText,
     meta: {
       filterVariant: "text",
     },
   },
+
+  // Genomics and Genetic Information
   {
-    header: "Genomic & Genetic Data",
+    header: "Genomics & Genetic Information",
     columns: [
       {
+        header: "GENE (GENE ID)",
+        accessorKey: "genomicsAndGeneticInformation.GENE",
+        filterFn: filterFunctionForText,
+        meta: {
+          filterVariant: "text",
+        },
+      },
+      {
         header: "REF",
-        accessorKey: "genomicAndGeneticData.REF",
+        accessorKey: "genomicsAndGeneticInformation.REF",
         filterFn: filterFunctionForText,
         meta: {
           filterVariant: "text",
@@ -80,26 +122,15 @@ export const columns: ColumnDef<DataType,any>[] = [
       },
       {
         header: "ALT",
-        accessorKey: "genomicAndGeneticData.ALT",
+        accessorKey: "genomicsAndGeneticInformation.ALT",
         filterFn: filterFunctionForText,
         meta: {
           filterVariant: "text",
         },
       },
       {
-        header: "AA",
-        accessorKey: "genomicAndGeneticData.AA",
-        cell: (info) => (
-          <span className="text-heading-blue">{info.getValue<string>()}</span>
-        ),
-        filterFn: filterFunctionForText,
-        meta: {
-          filterVariant: "text",
-        },
-      },
-      {
-        header: "ZYG",
-        accessorKey: "genomicAndGeneticData.ZYG",
+        header: "ZYGOSITY",
+        accessorKey: "genomicsAndGeneticInformation.ZYGOSITY",
         cell: (info) => {
           const value = info.getValue<string>();
           return (
@@ -113,42 +144,105 @@ export const columns: ColumnDef<DataType,any>[] = [
         },
       },
       {
-        header: "Codon",
-        id: "codon",
-        accessorKey: "genomicAndGeneticData.codon",
+        header: "CODONS",
+        id: "codons",
+        accessorKey: "genomicsAndGeneticInformation.CODONS",
         meta: {
           filterVariant: "text",
-          defaultVisibility: false
+          defaultVisibility: false,
+        },
+      },
+      {
+        header: "SNPS/RSID",
+        id: "spns",
+        accessorKey: "genomicsAndGeneticInformation.SPNS",
+        meta: {
+          filterVariant: "text",
+          defaultVisibility: false,
+        },
+      },
+      {
+        header: "HGVSC VEP",
+        id: "hgvsc",
+        accessorKey: "genomicsAndGeneticInformation.HGVSC",
+        meta: {
+          filterVariant: "text",
+          defaultVisibility: false,
+        },
+      },
+      {
+        header: "HGVSP VEP",
+        id: "hgvsp",
+        accessorKey: "genomicsAndGeneticInformation.HGVSP",
+        meta: {
+          filterVariant: "text",
+          defaultVisibility: false,
+        },
+      },
+      {
+        header: "LOVD (refseq)",
+        id: "lovd",
+        accessorKey: "genomicsAndGeneticInformation.LOVD",
+        meta: {
+          filterVariant: "text",
+          defaultVisibility: false,
+        },
+      },
+      {
+        header: "AMINO ACIDS",
+        id: "aminoacids",
+        accessorKey: "genomicsAndGeneticInformation.AMINOACIDS",
+        meta: {
+          filterVariant: "text",
+          defaultVisibility: false,
+        },
+      },
+      {
+        header: "MANE SELECT",
+        id: "mane",
+        accessorKey: "genomicsAndGeneticInformation.MANE",
+        cell: (info) => (
+          <span className="text-heading-blue">{info.getValue<string>()}</span>
+        ),
+        filterFn: filterFunctionForText,
+        meta: {
+          filterVariant: "text",
+        },
+      },
+      {
+        header: "MANE PLUS CLINICAL",
+        id: "maneplus",
+        accessorKey: "genomicsAndGeneticInformation.MANEPLUS",
+        cell: (info) => (
+          <span className="text-heading-blue">{info.getValue<string>()}</span>
+        ),
+        filterFn: filterFunctionForText,
+        meta: {
+          filterVariant: "text",
+        },
+      },
+      {
+        header: "SPLICEREGION",
+        id: "spliceregion",
+        accessorKey: "genomicsAndGeneticInformation.SPLICEREGION",
+        cell: (info) => (
+          <span className="text-heading-blue">{info.getValue<string>()}</span>
+        ),
+        filterFn: filterFunctionForText,
+        meta: {
+          filterVariant: "text",
         },
       },
     ],
   },
+
+  // ACMG
   {
     header: "ACMG",
     columns: [
       {
-        header: "DOM",
-        accessorKey: "ACMG.DOM",
-        cell: (info) => {
-          const value = info.getValue<string>();
-          if (!value) return null;
-          return (
-            <span
-              className={`${
-                value === "LP" ? "bg-custom-pink" : "bg-row-gray"
-              } w-8 h-8 px-2 rounded-sm text-white`}
-            >
-              {value}
-            </span>
-          );
-        },
-        meta: {
-          filterVariant: "checkbox",
-        },
-      },
-      {
-        header: "REC",
-        accessorKey: "ACMG.REC",
+        header: "ACMG CLASSIFICATION",
+        accessorKey: "ACMG.ACMGCLASSIFICATION",
         cell: (info) => {
           const value = info.getValue<string>();
           if (!value) return null;
@@ -168,108 +262,194 @@ export const columns: ColumnDef<DataType,any>[] = [
       },
     ],
   },
+
+  // variant calling
   {
     header: "Variant Calling Q&R",
     columns: [
       {
-        header: "Q&R",
-        accessorKey: "variantCallingQR.Q&R",
+        header: "IMPACT",
+        accessorKey: "variantCallingQR.IMPACT",
         meta: {
           filterVariant: "checkbox",
         },
       },
-      { header: "DP2", accessorKey: "variantCallingQR.DP2" },
+      { header: "DP", accessorKey: "variantCallingQR.DP" },
       {
-        header: "Alt(%)",
-        accessorKey: "variantCallingQR.Alt(%)",
+        header: "GQ",
+        accessorKey: "variantCallingQR.GQ",
+        filterFn: filterFunctionForNumbers,
+      },
+      {
+        header: "PL",
+        accessorKey: "variantCallingQR.PL",
+        filterFn: filterFunctionForNumbers,
+      },
+      {
+        header: "QUAL",
+        accessorKey: "variantCallingQR.QUAL",
+        filterFn: filterFunctionForNumbers,
+      },
+      {
+        header: "FILTER",
+        accessorKey: "variantCallingQR.FILTER",
         filterFn: filterFunctionForNumbers,
       },
     ],
   },
+
+  // clinical evidence
   {
     header: "Clinical Evidence",
     columns: [
-      { header: "Pheno", accessorKey: "clinicalEvidence.Pheno" },
+      { header: "PHENOTYPES", accessorKey: "clinicalEvidence.PHENOTYPES" },
       {
-        header: "Matched Phenotypes",
-        accessorKey: "clinicalEvidence.matchedPhenotypes",
+        header: "CLINVAR CLNSIG",
+        accessorKey: "clinicalEvidence.CLINVARCLNSIG",
         meta: {
           filterVariant: "checkbox",
         },
       },
       {
-        header: "CLINVAR",
-        accessorKey: "clinicalEvidence.CLINVAR",
+        header: "CLINVAR REVIEW",
+        accessorKey: "clinicalEvidence.CLINVARREVIEW",
         meta: {
           filterVariant: "checkbox",
         },
       },
       {
-        header: "OMIM",
-        accessorKey: "clinicalEvidence.OMIM",
+        header: "ACMG DISEASE ID (OMIM/ORPHA ID)",
+        accessorKey: "clinicalEvidence.ACMGDISEASEID",
         meta: {
           filterVariant: "checkbox",
         },
       },
       {
-        header: "OMIM Inheritance",
-        accessorKey: "clinicalEvidence.OMIM Inheritance",
+        header: "MOI",
+        accessorKey: "clinicalEvidence.MOI",
         meta: {
           filterVariant: "checkbox",
         },
       },
-      { header: "LitVar2", accessorKey: "clinicalEvidence.LitVar2" },
+      { header: "PUBMED", accessorKey: "clinicalEvidence.PUBMED" },
     ],
   },
-  {
-    header: "In House",
-    columns: [
-      {
-        header: "V",
-        accessorKey: "inHouse.V",
-        meta: {
-          filterVariant: "checkbox",
-        },
-      },
-      {
-        header: "G",
-        accessorKey: "inHouse.G",
-        meta: {
-          filterVariant: "checkbox",
-        },
-      },
-      {
-        header: "AF%",
-        accessorKey: "inHouse.AF%",
-        filterFn: filterFunctionForNumbers,
-      },
-    ],
-  },
+  // {
+  //   header: "In House",
+  //   columns: [
+  //     {
+  //       header: "V",
+  //       accessorKey: "inHouse.V",
+  //       meta: {
+  //         filterVariant: "checkbox",
+  //       },
+  //     },
+  //     {
+  //       header: "G",
+  //       accessorKey: "inHouse.G",
+  //       meta: {
+  //         filterVariant: "checkbox",
+  //       },
+  //     },
+  //     {
+  //       header: "AF%",
+  //       accessorKey: "inHouse.AF%",
+  //       filterFn: filterFunctionForNumbers,
+  //     },
+  //   ],
+  // },
+
+  // effect & prediction
   {
     header: "Effect & Prediction",
     columns: [
       {
-        header: "EFFECT",
-        accessorKey: "effectAndPrediction.EFFECT",
+        header: "CADD PHRED",
+        accessorKey: "effectAndPrediction.CADDPHRED",
         meta: {
           filterVariant: "checkbox",
         },
       },
       {
-        header: "Sev",
-        accessorKey: "effectAndPrediction.Sev",
+        header: "CADD RAW",
+        accessorKey: "effectAndPrediction.CADDRAW",
         meta: {
           filterVariant: "checkbox",
         },
       },
       {
-        header: "CADD(PHRED)",
-        accessorKey: "effectAndPrediction.CADD(PHRED)",
+        header: "ALPHAMISSENSE RANKSCORE",
+        accessorKey: "effectAndPrediction.ALPHAMISSENSERANKSCORE",
         filterFn: filterFunctionForNumbers,
       },
       {
-        header: "Splice-AI",
-        accessorKey: "effectAndPrediction.Splice-AI",
+        header: "IMPACT",
+        accessorKey: "effectAndPrediction.IMPACT",
+        filterFn: filterFunctionForNumbers,
+      },
+      {
+        header: "EFFECT",
+        accessorKey: "effectAndPrediction.EFFECT",
+        filterFn: filterFunctionForNumbers,
+      },
+      {
+        header: "LRT PRED",
+        accessorKey: "effectAndPrediction.LRTPRED",
+        filterFn: filterFunctionForNumbers,
+      },
+      {
+        header: "LRT SCORE",
+        accessorKey: "effectAndPrediction.LRTSCORE",
+        filterFn: filterFunctionForNumbers,
+      },
+      {
+        header: "MUTATIONTASTER PRED",
+        accessorKey: "effectAndPrediction.MUTATIONTASTERPRED",
+        filterFn: filterFunctionForNumbers,
+      },
+      {
+        header: "MUTATIONTASTER SCORE",
+        accessorKey: "effectAndPrediction.MUTATIONTASTERSCORE",
+        filterFn: filterFunctionForNumbers,
+      },
+      {
+        header: "ADA SCORE",
+        accessorKey: "effectAndPrediction.ADASCORE",
+        filterFn: filterFunctionForNumbers,
+      },
+      {
+        header: "RF SCORE",
+        accessorKey: "effectAndPrediction.RFSCORE",
+        filterFn: filterFunctionForNumbers,
+      },
+      {
+        header: "SIFT4G SCORE",
+        accessorKey: "effectAndPrediction.SIFT4GSCORE",
+        filterFn: filterFunctionForNumbers,
+      },
+      {
+        header: "SIFT",
+        accessorKey: "effectAndPrediction.SIFT",
+        filterFn: filterFunctionForNumbers,
+      },
+      {
+        header: "REVEL SCORE",
+        accessorKey: "effectAndPrediction.REVELSCORE",
+        filterFn: filterFunctionForNumbers,
+      },
+      {
+        header: "GERP++ NR",
+        accessorKey: "effectAndPrediction.GERPNR",
+        filterFn: filterFunctionForNumbers,
+      },
+      {
+        header: "GERP++ RS",
+        accessorKey: "effectAndPrediction.GERPRS",
+        filterFn: filterFunctionForNumbers,
+      },
+      {
+        header: "GERP++ RS RANKSCORE",
+        accessorKey: "effectAndPrediction.GERPRSRANKSCORE",
         filterFn: filterFunctionForNumbers,
       },
     ],
@@ -277,15 +457,29 @@ export const columns: ColumnDef<DataType,any>[] = [
   {
     header: "Frequency",
     columns: [
-      { header: "Max AF(%)", accessorKey: "frequency.Max AF(%)", filterFn: filterFunctionForNumbers },
       {
-        header: "GNEv4 AF(%)",
-        accessorKey: "frequency.GNEv4 AF(%)",
+        header: "AF",
+        accessorKey: "frequency.AF",
         filterFn: filterFunctionForNumbers,
       },
       {
-        header: "GNGv4 AF(%)",
-        accessorKey: "frequency.GNGv4 AF(%)",
+        header: "GNOMAD EXOMES SAS AF",
+        accessorKey: "frequency.GNOMADEXOMESSASAF",
+        filterFn: filterFunctionForNumbers,
+      },
+      {
+        header: "1000GP3 SAS AF",
+        accessorKey: "frequency.1000GP3SASAF",
+        filterFn: filterFunctionForNumbers,
+      },
+      {
+        header: "ESP6500 EA AF",
+        accessorKey: "frequency.ESP6500EAAF",
+        filterFn: filterFunctionForNumbers,
+      },
+      {
+        header: "EXAC SAS AF",
+        accessorKey: "frequency.EXACSASAF",
         filterFn: filterFunctionForNumbers,
       },
     ],
